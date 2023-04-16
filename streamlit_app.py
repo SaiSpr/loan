@@ -164,8 +164,8 @@ if st.button("Detection Result"):
 
     st.header(f'*Result of the credit application for the customer {client_id} is:*')
 
-    st.write(pred)
-    st.write(type(pred))
+#     st.write(pred)
+#     st.write(type(pred))
     if pred == 1:
       st.error('Loan Refused')
       option_1 = {
@@ -219,7 +219,7 @@ if st.button("Detection Result"):
 
     st.header("*The most significant variables in descending order and which have a high predictive power.*")
 
-    st.image("Shap_features_global.png", use_column_width=True)
+    st.image("shap_values_impact.png", use_column_width=True)
 
     df_informations_client = df_test_prod[['SK_ID_CURR','CODE_GENDER','AGE', 'FLAG_OWN_CAR','FLAG_OWN_REALTY', 'CNT_CHILDREN',
     'AGE','AMT_CREDIT', 'AMT_GOODS_PRICE', 'AMT_INCOME_TOTAL', 'EXT_SOURCE_1', 'EXT_SOURCE_2', 'EXT_SOURCE_3','LOAN_DURATION']]
