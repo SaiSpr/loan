@@ -212,7 +212,7 @@ if st.button("Detection Result"):
 
         st_echarts(options=option, width="100%", key=0)
 
-        st.header(f'*The data that most influenced the calculation of the prediction for the client {client_id} is:*')
+        st.header(f'*The highest predictive power and most important factors in descending order of {client_id} is:*')
         explain_plot(client_id, pred)
 
 
@@ -221,20 +221,20 @@ if st.button("Detection Result"):
 
     st.image("shap_values_impact.png", use_column_width=True)
 
-    df_informations_client = df_test_prod[['SK_ID_CURR','CODE_GENDER','AGE', 'FLAG_OWN_CAR','FLAG_OWN_REALTY', 'CNT_CHILDREN',
-    'AGE','AMT_CREDIT', 'AMT_GOODS_PRICE', 'AMT_INCOME_TOTAL', 'EXT_SOURCE_1', 'EXT_SOURCE_2', 'EXT_SOURCE_3','LOAN_DURATION']]
+#     df_informations_client = df_test_prod[['SK_ID_CURR','CODE_GENDER','AGE', 'FLAG_OWN_CAR','FLAG_OWN_REALTY', 'CNT_CHILDREN',
+#     'AGE','AMT_CREDIT', 'AMT_GOODS_PRICE', 'AMT_INCOME_TOTAL', 'EXT_SOURCE_1', 'EXT_SOURCE_2', 'EXT_SOURCE_3','LOAN_DURATION']]
 
 
 
 
-    st.header(f"*Customer's personal information {client_id} :*")
-    df_test_visu = df_test_prod[['SK_ID_CURR','AMT_CREDIT', 'AMT_GOODS_PRICE', 'AMT_INCOME_TOTAL', 'EXT_SOURCE_1', 'EXT_SOURCE_2', 'EXT_SOURCE_3', 'AGE', 'LOAN_DURATION']]
+#     st.header(f"*Customer's personal information {client_id} :*")
+#     df_test_visu = df_test_prod[['SK_ID_CURR','AMT_CREDIT', 'AMT_GOODS_PRICE', 'AMT_INCOME_TOTAL', 'EXT_SOURCE_1', 'EXT_SOURCE_2', 'EXT_SOURCE_3', 'AGE', 'LOAN_DURATION']]
 
-    st.write(df_informations_client[df_informations_client['SK_ID_CURR']==client_id].transpose())
+#     st.write(df_informations_client[df_informations_client['SK_ID_CURR']==client_id].transpose())
 
 
     #plot 
-    st.header(f'*Descriptive information about the customer {client_id}*'
+    st.header(f'*Information about the client: {client_id}*'
     )
     list_cols_dashboard = ['AMT_GOODS_PRICE', 'EXT_SOURCE_1', 'EXT_SOURCE_2', 'EXT_SOURCE_3', 'AGE', 'LOAN_DURATION',]
     for col in list_cols_dashboard:
