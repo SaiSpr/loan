@@ -19,7 +19,7 @@ validators==0.20.0
 #webencodings==0.5.1
 xgboost==1.7.3
 
-joblib
+
 matplotlib
 shap
 streamlit-echarts==0.4.0
