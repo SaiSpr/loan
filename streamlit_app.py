@@ -228,7 +228,7 @@ if st.button("Detection Result"):
 
 
 #     st.header(f"*Customer's personal information {client_id} :*")
-#     df_test_visu = df_test_prod[['SK_ID_CURR','AMT_CREDIT', 'AMT_GOODS_PRICE', 'AMT_INCOME_TOTAL', 'EXT_SOURCE_1', 'EXT_SOURCE_2', 'EXT_SOURCE_3', 'AGE', 'LOAN_DURATION']]
+    df_test_visu = df_test_prod[['SK_ID_CURR','AMT_CREDIT', 'AMT_GOODS_PRICE', 'AMT_INCOME_TOTAL', 'EXT_SOURCE_1', 'EXT_SOURCE_2', 'EXT_SOURCE_3', 'AGE', 'LOAN_DURATION']]
 
 #     st.write(df_informations_client[df_informations_client['SK_ID_CURR']==client_id].transpose())
 
