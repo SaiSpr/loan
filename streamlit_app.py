@@ -291,7 +291,7 @@ if st.button("Detection Result"):
 #                             "name": f"le client {client_id}",
 #                         },
 #                     ],
-                }
+#                 }
             ],
         }
     st_echarts(option_3, height="600px")
