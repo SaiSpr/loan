@@ -8,12 +8,12 @@ import pandas as pd
 
 
 app = FastAPI(
-    title="Credit Card Fraud Detection API",
-    description="""An API that utilises a Machine Learning model that detects if a credit card transaction is fraudulent or not based on the following features: hours, amount, transaction type etc.""",
+    title="Bank Loan Detection API",
+    description="""An API that utilises a Machine Learning model that detects the customers eligibility of a loan""",
     version="1.0.0", debug=True)
 
 
-model = joblib.load('credit_fraud.pkl')
+# model = joblib.load('credit_fraud.pkl')
 
 @app.get("/", response_class=PlainTextResponse)
 async def running():
@@ -30,22 +30,10 @@ async def favicon():
     return FileResponse(favicon_path)
 																	
 class fraudDetection(BaseModel):
-    step:float
-#     types:int
-#     amount:float	
-#     oldbalanceorig:float	
-#     newbalanceorig:float	
-#     oldbalancedest:float	
-#     newbalancedest:float	
-#     isflaggedfraud:float
-
+    client_id:float
 
 	
-	
-	
-	
-#importer dataframe des données clients tests
-
+#importing dataframe of test customer data
 df_test_prod = pd.read_csv('df_test_ok_prod_100_V7.csv', index_col=[0])
 # supprimer target
 df_test_prod.drop(columns=['TARGET'], inplace=True)
@@ -55,18 +43,11 @@ df_test_prod_request  = df_test_prod.set_index('SK_ID_CURR')
 clients_id = df_test_prod["SK_ID_CURR"].tolist() 
 
 
-	
 @app.post('/predict')
 def predict(data : fraudDetection):
                                                                                                                                                                                                                                 
-    features = np.array([data.step])
-#     model = joblib.load('credit_fraud.pkl')
+    features = np.array([data.client_id])
 
-#     predictions = model.predict(features)
-#     if predictions == 1:
-#         return {"fraudulent"}
-#     elif predictions == 0:
-#         return {"not fraudulent"}
 
     id = features[0]
 
@@ -80,11 +61,11 @@ def predict(data : fraudDetection):
     
         values_id_client = df_test_prod_request.loc[[id]]
        
-        # Définir le best threshold
+        # Defining the best threshold
         prob_preds = pipe_prod.predict_proba(values_id_client)
         
         #Fast_API_prob_preds
-        threshold = 0.332# definir threshold ici
+        threshold = 0.332 #threshold
         y_test_prob = [1 if prob_preds[i][1]> threshold else 0 for i in range(len(prob_preds))]
         
        
@@ -92,5 +73,3 @@ def predict(data : fraudDetection):
             "prediction": y_test_prob[0],
             "probability_0" : prob_preds[0][0],
             "probability_1" : prob_preds[0][1],}
-
-#         return id
