@@ -153,7 +153,7 @@ if st.button("Detection Result"):
                         "insideColor": "white",
                         "fontSize": 30
                     },
-                    "backgroundStyle": {"borderColor": "#156ACF", "borderWidth": 3, "color": "#ff4500"},
+                    "backgroundStyle": {"borderColor": "#156ACF", "borderWidth": 3, "color": "#ff7f50"},
                     "itemStyle": {"opacity": 0.95, "shadowBlur": 10, "shadowColor": "rgba(0, 0, 0, 0.4)"},
                 }
             ],
