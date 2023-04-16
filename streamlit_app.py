@@ -20,6 +20,7 @@ import seaborn as sns
 plt.style.use('ggplot')
 
 
+
 st.title("Bank Loan Detection Web App")
 
 st.image("image.jpg")
@@ -151,67 +152,67 @@ if st.button("Detection Result"):
     probability_value_1 = round(resp["probability_1"] * 100,2)
 
 
-import json
 
-st.header(f'*Result of the credit application for the customer {client_id} is:*')
 
-if pred == 1:
-    st.error('Loan Refused')
-    option_1 = {
-        "tooltip": {"formatter": "{a} <br/>{b} : {c}%"},
-        "series": [
-            {
-                "type": "liquidFill",
-                "data": [{"value": probability_value_1 / 100, "name": "Probability %"}],
-                "radius": "70%",
-                "backgroundStyle": {
-                    "color": "#eee",
-                },
-                "outline": {
-                    "show": False,
-                },
-                "itemStyle": {
-                    "color": "#ff4500",
-                    "opacity": 0.75,
-                },
-                "label": {
-                    "show": False,
-                },
-            }
-        ],
-    }
+    st.header(f'*Result of the credit application for the customer {client_id} is:*')
 
-    st_echarts(options=option_1, width="100%", key=0)
-    st.header(f'*The data that most influenced the calculation of the prediction for the client {client_id} is:*')
+    if pred == 1:
+        st.error('Loan Refused')
+        option_1 = {
+            "tooltip": {"formatter": "{a} <br/>{b} : {c}%"},
+            "series": [
+                {
+                    "type": "liquidFill",
+                    "data": [{"value": probability_value_1 / 100, "name": "Probability %"}],
+                    "radius": "70%",
+                    "backgroundStyle": {
+                        "color": "#eee",
+                    },
+                    "outline": {
+                        "show": False,
+                    },
+                    "itemStyle": {
+                        "color": "#ff4500",
+                        "opacity": 0.75,
+                    },
+                    "label": {
+                        "show": False,
+                    },
+                }
+            ],
+        }
 
-    explain_plot(client_id, pred)
-else:
-    st.success('Loan Approved')
-    option = {
-        "tooltip": {"formatter": "{a} <br/>{b} : {c}%"},
-        "series": [
-            {
-                "type": "liquidFill",
-                "data": [{"value": probability_value_0 / 100, "name": "Probability %"}],
-                "radius": "70%",
-                "backgroundStyle": {
-                    "color": "#eee",
-                },
-                "outline": {
-                    "show": False,
-                },
-                "itemStyle": {
-                    "color": "#228b22",
-                    "opacity": 0.75,
-                },
-                "label": {
-                    "show": False,
-                },
-            }
-        ],
-    }
+        st_echarts(options=option_1, width="100%", key=0)
+        st.header(f'*The data that most influenced the calculation of the prediction for the client {client_id} is:*')
 
-    st_echarts(options=option, width="100%", key=0)
+        explain_plot(client_id, pred)
+    else:
+        st.success('Loan Approved')
+        option = {
+            "tooltip": {"formatter": "{a} <br/>{b} : {c}%"},
+            "series": [
+                {
+                    "type": "liquidFill",
+                    "data": [{"value": probability_value_0 / 100, "name": "Probability %"}],
+                    "radius": "70%",
+                    "backgroundStyle": {
+                        "color": "#eee",
+                    },
+                    "outline": {
+                        "show": False,
+                    },
+                    "itemStyle": {
+                        "color": "#228b22",
+                        "opacity": 0.75,
+                    },
+                    "label": {
+                        "show": False,
+                    },
+                }
+            ],
+        }
+
+        st_echarts(options=option, width="100%", key=0)
 
 
         st.header(f'*The highest predictive power and most important factors in descending order of {client_id} is:*')
