@@ -8,17 +8,15 @@ import pandas as pd
 
 
 app = FastAPI(
-    title="Bank Loan Detection API",
-    description="""An API that utilises a Machine Learning model that detects the customers eligibility of a loan""",
+    title="Credit Card Fraud Detection API",
+    description="""An API that utilises a Machine Learning model that detects the customers eligibility of a loan.""",
     version="1.0.0", debug=True)
 
-
-# model = joblib.load('credit_fraud.pkl')
 
 @app.get("/", response_class=PlainTextResponse)
 async def running():
   note = """
-Credit Card Fraud Detection API 🙌🏻
+Loan Eligibility Detection API 🙌🏻
 
 Note: add "/docs" to the URL to get the Swagger UI Docs or "/redoc"
   """
@@ -31,9 +29,10 @@ async def favicon():
 																	
 class fraudDetection(BaseModel):
     client_id:float
-
 	
-#importing dataframe of test customer data
+	
+#importer dataframe des données clients tests
+
 df_test_prod = pd.read_csv('df_test_ok_prod_100_V7.csv', index_col=[0])
 # supprimer target
 df_test_prod.drop(columns=['TARGET'], inplace=True)
@@ -48,7 +47,6 @@ def predict(data : fraudDetection):
                                                                                                                                                                                                                                 
     features = np.array([data.client_id])
 
-
     id = features[0]
 
     if id not in clients_id:
@@ -61,11 +59,11 @@ def predict(data : fraudDetection):
     
         values_id_client = df_test_prod_request.loc[[id]]
        
-        # Defining the best threshold
+        # Définir le best threshold
         prob_preds = pipe_prod.predict_proba(values_id_client)
         
         #Fast_API_prob_preds
-        threshold = 0.332 #threshold
+        threshold = 0.332# definir threshold ici
         y_test_prob = [1 if prob_preds[i][1]> threshold else 0 for i in range(len(prob_preds))]
         
        
@@ -73,3 +71,7 @@ def predict(data : fraudDetection):
             "prediction": y_test_prob[0],
             "probability_0" : prob_preds[0][0],
             "probability_1" : prob_preds[0][1],}
+
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="127.0.0.1", port=8090)
