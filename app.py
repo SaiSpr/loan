@@ -9,16 +9,14 @@ import pandas as pd
 
 app = FastAPI(
     title="Credit Card Fraud Detection API",
-    description="""An API that utilises a Machine Learning model that detects if a credit card transaction is fraudulent or not based on the following features: hours, amount, transaction type etc.""",
+    description="""An API that utilises a Machine Learning model that detects the customers eligibility of a loan.""",
     version="1.0.0", debug=True)
 
-
-# model = joblib.load('credit_fraud.pkl')
 
 @app.get("/", response_class=PlainTextResponse)
 async def running():
   note = """
-Credit Card Fraud Detection API 🙌🏻
+Loan Eligibility Detection API 🙌🏻
 
 Note: add "/docs" to the URL to get the Swagger UI Docs or "/redoc"
   """
@@ -31,10 +29,6 @@ async def favicon():
 																	
 class fraudDetection(BaseModel):
     client_id:float
-
-
-	
-	
 	
 	
 #importer dataframe des données clients tests
@@ -77,7 +71,7 @@ def predict(data : fraudDetection):
             "prediction": y_test_prob[0],
             "probability_0" : prob_preds[0][0],
             "probability_1" : prob_preds[0][1],}
-#         return id
+
 
 if __name__ == "__main__":
     uvicorn.run(app, host="127.0.0.1", port=8090)
