@@ -13,7 +13,7 @@ app = FastAPI(
     version="1.0.0", debug=True)
 
 
-model = joblib.load('credit_fraud.pkl')
+# model = joblib.load('credit_fraud.pkl')
 
 @app.get("/", response_class=PlainTextResponse)
 async def running():
@@ -30,14 +30,7 @@ async def favicon():
     return FileResponse(favicon_path)
 																	
 class fraudDetection(BaseModel):
-    step:float
-#     types:int
-#     amount:float	
-#     oldbalanceorig:float	
-#     newbalanceorig:float	
-#     oldbalancedest:float	
-#     newbalancedest:float	
-#     isflaggedfraud:float
+    client_id:float
 
 
 	
@@ -58,14 +51,7 @@ clients_id = df_test_prod["SK_ID_CURR"].tolist()
 @app.post('/predict')
 def predict(data : fraudDetection):
                                                                                                                                                                                                                                 
-    features = np.array([data.step])
-#     model = joblib.load('credit_fraud.pkl')
-
-#     predictions = model.predict(features)
-#     if predictions == 1:
-#         return {"Bad"}
-#     elif predictions == 0:
-#         return {"not Bad"}
+    features = np.array([data.client_id])
 
     id = features[0]
 
