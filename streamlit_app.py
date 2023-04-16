@@ -292,6 +292,6 @@ if st.button("Detection Result"):
 #                         },
 #                     ],
 #                 }
-            ],
-        }
+#             ],
+#         }
     st_echarts(option_3, height="600px")
