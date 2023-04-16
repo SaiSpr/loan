@@ -145,7 +145,7 @@ if st.button("Detection Result"):
 
                 """)
 
-    res = re.post( url ="http://127.0.0.1:8000/predict", data = json.dumps(values))
+    res = re.post( url ="https://loan-production.up.railway.app/predict", data = json.dumps(values))
 
     json_str = json.dumps(res.json())
     
