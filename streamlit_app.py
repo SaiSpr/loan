@@ -131,6 +131,17 @@ if st.button("Detection Result"):
     if pred == 1:
         st.error('Loan Refused')
         option_1 = {
+              "tooltip": {"formatter": "{a} <br/>{b} : {c}%"},
+              "graphic": {
+                  "type": "text",
+                  "left": "center",
+                  "top": "45%",
+                  "style": {
+                      "fill": "#000",
+                      "text": f"Probability: {probability_value_0:.2f}%",
+                      "font": "bold 24px 'Helvetica Neue', Helvetica, Arial, sans-serif"
+                  }
+              },
             "series": [
                 {
                     "type": "liquidFill",
@@ -162,6 +173,17 @@ if st.button("Detection Result"):
     else:
         st.success('Loan Approved')
         option = {
+              "tooltip": {"formatter": "{a} <br/>{b} : {c}%"},
+              "graphic": {
+                  "type": "text",
+                  "left": "center",
+                  "top": "45%",
+                  "style": {
+                      "fill": "#000",
+                      "text": f"Probability: {probability_value_0:.2f}%",
+                      "font": "bold 24px 'Helvetica Neue', Helvetica, Arial, sans-serif"
+                  }
+              },
             "series": [
                 {
                     "type": "liquidFill",
