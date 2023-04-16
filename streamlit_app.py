@@ -159,7 +159,7 @@ if st.button("Detection Result"):
             ],
         }
 
-        st_echarts(options=option_1, width="100%", height="300px", key=0)
+        st_echarts(options=option_1, width="100%", height="600px", key=0)
 
         st.header(f'*The data that most influenced the calculation of the prediction for the client {client_id} is:*')
 
@@ -201,7 +201,7 @@ if st.button("Detection Result"):
             ],
         }
 
-        st_echarts(options=option, width="100%", height="300px", key=0)
+        st_echarts(options=option, width="100%", height="600px", key=0)
 
 
 
