@@ -247,7 +247,7 @@ if st.button("Detection Result"):
 
 
          plt.figure(figsize=(12,8))
-         plt.gca().set_title(f'{col} At', size=30)
+         plt.gca().set_title(f'{col}', size=30)
          sns.distplot(df_train_rembourse[[col]], label='Rembourse', color='green', hist=False, bins=8)
          sns.distplot(df_train_not_rembourse[[col]], label='Non_rembourse', color='red', hist=False, bins=8)
          plt.axvline(x=float(df_test_visu[df_test_visu['SK_ID_CURR']== client_id][[col]].values),
@@ -259,38 +259,38 @@ if st.button("Detection Result"):
       #st.plotly_chart(fig, use_container_width=True)
          st.pyplot()
             
-    option_3 = {
-            #"title": {"text": "Comparaison du client avec la base de données"},
-            "legend": {"data": ["（Payment default）", "（Non default payment）", f"the customer {client_id}"]},
-            "radar": {
-                "indicator": [
-                    {"name": "（Age）", "max": 70},
-                    {"name": "（AMT_GOODS_PRICE）", "max": 1800000.00},
-                    {"name": "（AMT_CREDIT）", "max": 2102490.00},
-                    {"name": "（AMT_INCOME_TOTAL）", "max": 540000.00},
-                    {"name": "（AMT_ANNUITY）", "max": 74416.50},
-                    {"name": "（LOAN_DURATION）", "max": 32.21},
-                ]
-            },
-            "series": [
-                {
-                    "name": "（Client_id vs. Database）",
-                    "type": "radar",
-                    "data": [
-                        {
-                            "value": [43.71 ,488972.41, 557778.53, 165611.76,  26481.74,20.76 ],
-                            "name": "（Payment default）",
-                        },
-                        {
-                            "value": [40.28 ,542738.51, 602651.16, 169077.47, 27163.73, 21.68 ],
-                            "name": "（Non default payment）",
-                        },
-                        {
-                            "value": list(df_test_prod[df_test_prod['SK_ID_CURR']==client_id][["AGE","AMT_GOODS_PRICE","AMT_CREDIT","AMT_INCOME_TOTAL","AMT_ANNUITY","LOAN_DURATION"]].squeeze())
-    ,
-                            "name": f"le client {client_id}",
-                        },
-                    ],
+#     option_3 = {
+#             #"title": {"text": "Comparaison du client avec la base de données"},
+#             "legend": {"data": ["（Payment default）", "（Non default payment）", f"the customer {client_id}"]},
+#             "radar": {
+#                 "indicator": [
+#                     {"name": "（Age）", "max": 70},
+#                     {"name": "（AMT_GOODS_PRICE）", "max": 1800000.00},
+#                     {"name": "（AMT_CREDIT）", "max": 2102490.00},
+#                     {"name": "（AMT_INCOME_TOTAL）", "max": 540000.00},
+#                     {"name": "（AMT_ANNUITY）", "max": 74416.50},
+#                     {"name": "（LOAN_DURATION）", "max": 32.21},
+#                 ]
+#             },
+#             "series": [
+#                 {
+#                     "name": "（Client_id vs. Database）",
+#                     "type": "radar",
+#                     "data": [
+#                         {
+#                             "value": [43.71 ,488972.41, 557778.53, 165611.76,  26481.74,20.76 ],
+#                             "name": "（Payment default）",
+#                         },
+#                         {
+#                             "value": [40.28 ,542738.51, 602651.16, 169077.47, 27163.73, 21.68 ],
+#                             "name": "（Non default payment）",
+#                         },
+#                         {
+#                             "value": list(df_test_prod[df_test_prod['SK_ID_CURR']==client_id][["AGE","AMT_GOODS_PRICE","AMT_CREDIT","AMT_INCOME_TOTAL","AMT_ANNUITY","LOAN_DURATION"]].squeeze())
+#     ,
+#                             "name": f"le client {client_id}",
+#                         },
+#                     ],
                 }
             ],
         }
