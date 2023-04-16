@@ -214,16 +214,11 @@ if st.button("Detection Result"):
 
     st.image("shap_values_impact.png", use_column_width=True)
 
-#     df_informations_client = df_test_prod[['SK_ID_CURR','CODE_GENDER','AGE', 'FLAG_OWN_CAR','FLAG_OWN_REALTY', 'CNT_CHILDREN',
-#     'AGE','AMT_CREDIT', 'AMT_GOODS_PRICE', 'AMT_INCOME_TOTAL', 'EXT_SOURCE_1', 'EXT_SOURCE_2', 'EXT_SOURCE_3','LOAN_DURATION']]
-
 
 
 
 #     st.header(f"*Customer's personal information {client_id} :*")
     df_test_visu = df_test_prod[['SK_ID_CURR','AMT_CREDIT', 'AMT_GOODS_PRICE', 'AMT_INCOME_TOTAL', 'EXT_SOURCE_1', 'EXT_SOURCE_2', 'EXT_SOURCE_3', 'AGE', 'LOAN_DURATION']]
-
-#     st.write(df_informations_client[df_informations_client['SK_ID_CURR']==client_id].transpose())
 
 
     #plot 
@@ -231,60 +226,14 @@ if st.button("Detection Result"):
     )
     list_cols_dashboard = ['AMT_GOODS_PRICE', 'EXT_SOURCE_1', 'EXT_SOURCE_2', 'EXT_SOURCE_3', 'AGE', 'LOAN_DURATION',]
     for col in list_cols_dashboard:
-
-
-        #fig = ff.create_distplot(col,df_train, bin_size=[.1, .25, .5])
-        #st.plotly_chart(fig, use_container_width=True)
-        #st.pyplot()
-
-
-
          plt.figure(figsize=(12,8))
          plt.gca().set_title(f'{col}', size=30)
          sns.distplot(df_train_rembourse[[col]], label='Rembourse', color='green', hist=False, bins=8)
          sns.distplot(df_train_not_rembourse[[col]], label='Non_rembourse', color='red', hist=False, bins=8)
          plt.axvline(x=float(df_test_visu[df_test_visu['SK_ID_CURR']== client_id][[col]].values),
                      color='blue', ls=':', lw=4, label=client_id)
-      #plt.annotate('Le client', xy = (000000.175, 100001), xytext = (1.75e-6, 100001),
-                     # arrowprops = {'facecolor': 'red', 'shrink': 0.1})
+
          plt.legend()
-      # Plot!
-      #st.plotly_chart(fig, use_container_width=True)
+
          st.pyplot()
             
-#     option_3 = {
-#             #"title": {"text": "Comparaison du client avec la base de données"},
-#             "legend": {"data": ["（Payment default）", "（Non default payment）", f"the customer {client_id}"]},
-#             "radar": {
-#                 "indicator": [
-#                     {"name": "（Age）", "max": 70},
-#                     {"name": "（AMT_GOODS_PRICE）", "max": 1800000.00},
-#                     {"name": "（AMT_CREDIT）", "max": 2102490.00},
-#                     {"name": "（AMT_INCOME_TOTAL）", "max": 540000.00},
-#                     {"name": "（AMT_ANNUITY）", "max": 74416.50},
-#                     {"name": "（LOAN_DURATION）", "max": 32.21},
-#                 ]
-#             },
-#             "series": [
-#                 {
-#                     "name": "（Client_id vs. Database）",
-#                     "type": "radar",
-#                     "data": [
-#                         {
-#                             "value": [43.71 ,488972.41, 557778.53, 165611.76,  26481.74,20.76 ],
-#                             "name": "（Payment default）",
-#                         },
-#                         {
-#                             "value": [40.28 ,542738.51, 602651.16, 169077.47, 27163.73, 21.68 ],
-#                             "name": "（Non default payment）",
-#                         },
-#                         {
-#                             "value": list(df_test_prod[df_test_prod['SK_ID_CURR']==client_id][["AGE","AMT_GOODS_PRICE","AMT_CREDIT","AMT_INCOME_TOTAL","AMT_ANNUITY","LOAN_DURATION"]].squeeze())
-#     ,
-#                             "name": f"le client {client_id}",
-#                         },
-#                     ],
-#                 }
-#             ],
-#         }
-#     st_echarts(option_3, height="600px")
