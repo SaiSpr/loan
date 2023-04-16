@@ -126,9 +126,6 @@ if st.button("Detection Result"):
     probability_value_1 = round(resp["probability_1"] * 100,2)
 
 
-
-
-
     st.header(f'*Result of the credit application for the customer {client_id} is:*')
 
     if pred == 1:
@@ -137,8 +134,14 @@ if st.button("Detection Result"):
             "series": [
                 {
                     "type": "liquidFill",
-                    "data": [{"value":probability_value_1/100, "name": "Probability %"}],
-                    "label": {"show": "true", "color": "white", "insideColor": "white", "fontSize": 30},
+                    "data": [probability_value_1/100],
+                    "label": {
+                        "show": "true",
+                        "formatter": f'Probability: {probability_value_1:.2f}%',
+                        "color": "white",
+                        "insideColor": "white",
+                        "fontSize": 30
+                    },
                     "backgroundStyle": {"borderColor": "#156ACF", "borderWidth": 3, "color": "#121847"},
                     "itemStyle": {"opacity": 0.95, "shadowBlur": 10, "shadowColor": "rgba(0, 0, 0, 0.4)"},
                 }
@@ -162,8 +165,14 @@ if st.button("Detection Result"):
             "series": [
                 {
                     "type": "liquidFill",
-                    "data": [{"value":probability_value_0/100, "name": "Probability %"}],
-                    "label": {"show": "true", "color": "white", "insideColor": "white", "fontSize": 30},
+                    "data": [probability_value_0/100],
+                    "label": {
+                        "show": "true",
+                        "formatter": f'Probability: {probability_value_0:.2f}%',
+                        "color": "white",
+                        "insideColor": "white",
+                        "fontSize": 30
+                    },
                     "backgroundStyle": {"borderColor": "#156ACF", "borderWidth": 3, "color": "#121847"},
                     "itemStyle": {"opacity": 0.95, "shadowBlur": 10, "shadowColor": "rgba(0, 0, 0, 0.4)"},
                 }
