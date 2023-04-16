@@ -137,7 +137,7 @@ if st.button("Detection Result"):
             "series": [
                 {
                     "type": "liquidFill",
-                    "data": [probability_value_1/100],
+                    "data": [probability_value_1/100, "name": "Probability %"],
                     "label": {"show": "true", "color": "white", "insideColor": "white", "fontSize": 30},
                     "backgroundStyle": {"borderColor": "#156ACF", "borderWidth": 3, "color": "#121847"},
                     "itemStyle": {"opacity": 0.95, "shadowBlur": 10, "shadowColor": "rgba(0, 0, 0, 0.4)"},
@@ -162,7 +162,7 @@ if st.button("Detection Result"):
             "series": [
                 {
                     "type": "liquidFill",
-                    "data": [probability_value_0/100],
+                    "data": [probability_value_0/100, "name": "Probability %"],
                     "label": {"show": "true", "color": "white", "insideColor": "white", "fontSize": 30},
                     "backgroundStyle": {"borderColor": "#156ACF", "borderWidth": 3, "color": "#121847"},
                     "itemStyle": {"opacity": 0.95, "shadowBlur": 10, "shadowColor": "rgba(0, 0, 0, 0.4)"},
