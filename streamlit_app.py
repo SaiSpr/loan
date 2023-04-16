@@ -139,7 +139,7 @@ if st.button("Detection Result"):
                   "style": {
                       "fill": "#000",
                       "text": f"Probability: {probability_value_0:.2f}%",
-                      "font": "bold 24px 'Helvetica Neue', Helvetica, Arial, sans-serif"
+                      "font": "bold 22px 'Helvetica Neue', Helvetica, Arial, sans-serif"
                   }
               },
             "series": [
@@ -181,7 +181,7 @@ if st.button("Detection Result"):
                   "style": {
                       "fill": "#000",
                       "text": f"Probability: {probability_value_0:.2f}%",
-                      "font": "bold 24px 'Helvetica Neue', Helvetica, Arial, sans-serif"
+                      "font": "bold 22px 'Helvetica Neue', Helvetica, Arial, sans-serif"
                   }
               },
             "series": [
