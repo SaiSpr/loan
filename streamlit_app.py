@@ -1,13 +1,9 @@
-#-----------------------#
-# IMPORT DES LIBRAIRIES #
-#-----------------------#
 
+# IMPORTing NECESSARY LIBRAIRIES 
 import streamlit as st
 import joblib
 import streamlit.components.v1 as components
-# import plotly.graph_objects as go
 import matplotlib.pyplot as plt
-# import plotly.express as px
 st.set_option('deprecation.showPyplotGlobalUse', False)
 import shap
 import requests as re
@@ -29,22 +25,6 @@ st.image("image.jpg")
 
 st.sidebar.header('Select the Client_id:')
 
-# sender_name = 1
-# receiver_name = 2
-
-# types = 4
-
-
-# amount = 4
-# oldbalanceorg = 5
-# newbalanceorg= 6
-# oldbalancedest=7
-# newbalancedest= 8
-# isflaggedfraud = 0
-
-
-
-
   
 st.title("****Calculating the probability that a customer will repay their credit or not****")  
 
@@ -58,8 +38,6 @@ cols_shap_local = pickle.load(list_file)
 print(cols_shap_local)
 
 
-
-#df_test_prod = pd.read_csv('df_test_ok_prod_100.csv', index_col=[0])
 df_test_prod = pd.read_csv('df_test_ok_prod_100_V7.csv', index_col=[0])
 df_test_prod['LOAN_DURATION'] = 1/df_test_prod['PAYMENT_RATE']
 df_test_prod.drop(columns=['TARGET'], inplace=True)
@@ -75,10 +53,8 @@ list_client_prod = df_test_prod['SK_ID_CURR'].tolist()
 client_id = st.sidebar.selectbox("Client Id list",list_client_prod)
 client_id = int(client_id)
 
-# st.header(f'Credit request result for client {client_id}')
-
     
-step = client_id
+# step = client_id
     
 
     
@@ -130,15 +106,13 @@ df_train_rembourse = df_train_rembourse[cols_dashbord]
   
 if st.button("Detection Result"):
     values = {
-    "step": step,
+    "client_id": client_id,
     }
 
 
     st.write(f"""### These are the details:\n
 
-    Client Id is: {step}\n
-
-                """)
+    Client Id is: {client_id}\n """)
 
     res = re.post( url ="https://loan-production.up.railway.app/predict", data = json.dumps(values))
 
