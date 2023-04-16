@@ -74,7 +74,7 @@ list_client_prod = df_test_prod['SK_ID_CURR'].tolist()
 client_id = st.sidebar.selectbox("Client Id list",list_client_prod)
 client_id = int(client_id)
 
-st.header(f'Credit request result for client {client_id}')
+# st.header(f'Credit request result for client {client_id}')
 
     
 step = client_id
@@ -136,12 +136,6 @@ if st.button("Detection Result"):
     st.write(f"""### These are the details:\n
 
     Client Id is: {step}\n
-    
-    type of client_id is : {type(step)}
-    
-    Values is : {values}
-    
-    Values tyep is : {type(values)}
 
                 """)
 
@@ -150,17 +144,17 @@ if st.button("Detection Result"):
     json_str = json.dumps(res.json())
     
         
-    st.write(json_str)
-    st.write(type(json_str))
+#     st.write(json_str)
+#     st.write(type(json_str))
     resp = json.loads(json_str)
     
 #     prediction = res
 
-    st.write(res)
-    st.write(type(res))
+#     st.write(res)
+#     st.write(type(res))
     
-    st.write(resp)
-    st.write(type(resp))
+#     st.write(resp)
+#     st.write(type(resp))
     
     pred = resp["prediction"]
 
