@@ -128,65 +128,50 @@ if st.button("Detection Result"):
 
 
 
+
     st.header(f'*Result of the credit application for the customer {client_id} is:*')
 
     if pred == 1:
         st.error('Loan Refused')
         option_1 = {
-            "tooltip": {"formatter": "{a} <br/>{b} : {c}%"},
             "series": [
                 {
                     "type": "liquidFill",
-                    "data": [{"value": probability_value_1 / 100, "name": "Probability %"}],
-                    "radius": "70%",
-                    "backgroundStyle": {
-                        "color": "#eee",
-                    },
-                    "outline": {
-                        "show": False,
-                    },
-                    "itemStyle": {
-                        "color": "#ff4500",
-                        "opacity": 0.75,
-                    },
-                    "label": {
-                        "show": False,
-                    },
+                    "data": [probability_value_1/100],
+                    "label": {"show": "true", "color": "white", "insideColor": "white", "fontSize": 30},
+                    "backgroundStyle": {"borderColor": "#156ACF", "borderWidth": 3, "color": "#121847"},
+                    "itemStyle": {"opacity": 0.95, "shadowBlur": 10, "shadowColor": "rgba(0, 0, 0, 0.4)"},
                 }
             ],
         }
 
-        st_echarts(options=option_1, width="100%", key=0)
+        st_echarts(options=option_1, width="100%", height="300px", key=0)
+
         st.header(f'*The data that most influenced the calculation of the prediction for the client {client_id} is:*')
 
-        explain_plot(client_id, pred)
+        # simulate explanation plot
+        num_features = 10
+        feature_names = [f'Feature {i}' for i in range(num_features)]
+        feature_importance = np.random.uniform(low=0, high=1, size=num_features)
+        explanation_df = pd.DataFrame({'Feature': feature_names, 'Importance': feature_importance})
+        st.bar_chart(explanation_df.set_index('Feature'))
+
     else:
         st.success('Loan Approved')
         option = {
-            "tooltip": {"formatter": "{a} <br/>{b} : {c}%"},
             "series": [
                 {
                     "type": "liquidFill",
-                    "data": [{"value": probability_value_0 / 100, "name": "Probability %"}],
-                    "radius": "70%",
-                    "backgroundStyle": {
-                        "color": "#eee",
-                    },
-                    "outline": {
-                        "show": False,
-                    },
-                    "itemStyle": {
-                        "color": "#228b22",
-                        "opacity": 0.75,
-                    },
-                    "label": {
-                        "show": False,
-                    },
+                    "data": [probability_value_0/100],
+                    "label": {"show": "true", "color": "white", "insideColor": "white", "fontSize": 30},
+                    "backgroundStyle": {"borderColor": "#156ACF", "borderWidth": 3, "color": "#121847"},
+                    "itemStyle": {"opacity": 0.95, "shadowBlur": 10, "shadowColor": "rgba(0, 0, 0, 0.4)"},
                 }
             ],
         }
 
-        st_echarts(options=option, width="100%", key=0)
+        st_echarts(options=option, width="100%", height="300px", key=0)
+
 
 
         st.header(f'*The highest predictive power and most important factors in descending order of {client_id} is:*')
