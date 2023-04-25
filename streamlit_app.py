@@ -114,7 +114,7 @@ if st.button("Detection Result"):
 
     Client Id is: {client_id}\n """)
 
-    res = re.post( url ="https://loan-production.up.railway.app/predict", data = json.dumps(values))
+    res = re.post( url ="https://loan-rpvj.onrender.com/predict", data = json.dumps(values))
 
     json_str = json.dumps(res.json())
     
