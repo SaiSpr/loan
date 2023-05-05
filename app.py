@@ -33,7 +33,7 @@ class fraudDetection(BaseModel):
 	
 #importer dataframe des données clients tests
 
-df_test_prod = pd.read_csv('df_test_ok_prod_100_V7.csv', index_col=[0])
+df_test_prod = pd.read_csv('test_prod_data.csv', index_col=[0])
 # supprimer target
 df_test_prod.drop(columns=['TARGET'], inplace=True)
 # mettre SK_ID_CURR en index 
@@ -55,7 +55,7 @@ def predict(data : fraudDetection):
     else:
         
         
-        pipe_prod = joblib.load('LGBM_pipe_version7.pkl')
+        pipe_prod = joblib.load('model.pkl')
     
         values_id_client = df_test_prod_request.loc[[id]]
        
