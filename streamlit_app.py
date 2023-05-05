@@ -33,19 +33,19 @@ st.sidebar.image("home_credit.png", use_column_width=True)
   
  
 # Read 
-list_file = open('cols_shap_local.pickle','rb')
+list_file = open('shapley.pickle','rb')
 cols_shap_local = pickle.load(list_file)
 print(cols_shap_local)
 
 
-df_test_prod = pd.read_csv('df_test_ok_prod_100_V7.csv', index_col=[0])
+df_test_prod = pd.read_csv('test_prod_data.csv', index_col=[0])
 df_test_prod['LOAN_DURATION'] = 1/df_test_prod['PAYMENT_RATE']
 df_test_prod.drop(columns=['TARGET'], inplace=True)
 df_test_prod_request  = df_test_prod.set_index('SK_ID_CURR')
 
 
 
-df_train = pd.read_csv('df_train_prod_1.csv', index_col=[0])
+df_train = pd.read_csv('train_prod_data.csv', index_col=[0])
 df_train['LOAN_DURATION'] = 1/df_train['PAYMENT_RATE']
 
 # Liste clients id sidebar 
